@@ -181,7 +181,7 @@
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             const themeToggle = document.querySelector('.theme-toggle');
             const htmlElement = document.documentElement;
             const currentTimeElement = document.querySelector('.current-time');
@@ -203,10 +203,95 @@
                 currentTimeElement.textContent = `${hours}:${minutes}`;
             }
             
-            // Update time immediately and set interval
-            updateCurrentTime();
-            setInterval(updateCurrentTime, 60000); // Update every minute
+                                    console.log("blub0");
+            //updateCurrentTime();
+            //setInterval(updateCurrentTime, 60000);
+            
+                        console.log("blub1");
+            const departures = await getMVGDepartures();
+            console.log(departures);
+            generateDepartureTable(departures);
         });
+        
+        async function getMVGDepartures() {
+  try {
+    // The API endpoint for departures
+    const url = "https://www.mvg.de/api/bgw-pt/v3/departures?globalId=de:09162:1017";
+    
+    // Fetch data from the API
+    const response = await fetch(url);
+    
+            console.log("blub");
+    console.log(response);
+
+    
+    // Check if the request was successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    } 
+    
+    // Parse the JSON response
+    const departureData = await response.json();
+    
+    
+    const processedDepartures = departureData.map(departure => ({
+      label: departure.label,
+      destination: departure.destination,
+      realtimeDepartureTime: departure.realtimeDepartureTime
+    }));
+    
+    return processedDepartures;
+  } catch (error) {
+    console.error("Error fetching MVG departures:", error);
+    throw error;
+  }
+}
+
+function generateDepartureTable(departures) {
+  // Get the table body element
+  const tableBody = document.querySelector('.departures-table tbody');
+  
+  // Clear existing content
+  tableBody.innerHTML = '';
+  
+  // Add current time row
+  const currentTime = new Date();
+  const formattedCurrentTime = formatTime(currentTime);
+  
+  const currentTimeRow = `
+    <tr class="current-time-row">
+      <td class="line-number"></td>
+      <td class="current-time-label">Current Time</td>
+      <td class="current-time">${formattedCurrentTime}</td>
+    </tr>
+  `;
+  
+  tableBody.insertAdjacentHTML('beforeend', currentTimeRow);
+  
+  // Add departure rows
+  departures.forEach(departure => {
+    const departureTime = new Date(departure.realtimeDepartureTime);
+    const formattedDepartureTime = formatTime(departureTime);
+    
+    const departureRow = `
+      <tr>
+        <td class="line-number">${departure.label}</td>
+        <td class="destination">${departure.destination}</td>
+        <td class="time-container">
+          <span class="clock-time">${formattedDepartureTime}</span>
+        </td>
+      </tr>
+    `;
+    
+    tableBody.insertAdjacentHTML('beforeend', departureRow);
+  });
+}
+
+function formatTime(date) {
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${hours}:${minutes}`;
+}
     </script>
 </head>
 <body>
@@ -214,7 +299,7 @@
         <div class="theme-toggle-container">
             <button class="theme-toggle">☀️ / 🌙</button>
         </div>
-        <h1 class="station-name">Central Station</h1>
+        <h1 class="station-name">Holzwiesenstraße</h1>
         <button class="refresh-btn">⟳</button>
     </header>
     
@@ -225,19 +310,6 @@
     
     <table class="departures-table">
         <tbody>
-            <tr class="current-time-row">
-                <td class="line-number"></td>
-                <td class="current-time-label">Current Time</td>
-                <td class="current-time">14:20</td>
-            </tr>
-            <tr>
-                <td class="line-number">10</td>
-                <td class="destination">Downtown West</td>
-                <td class="time-container">
-                    <span class="minutes">2</span>
-                    <span class="clock-time">14:22</span>
-                </td>
-            </tr>
         </tbody>
     </table>
 </body>
