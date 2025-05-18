@@ -47,12 +47,6 @@
             line-height: 1.2;
         }
 
-        .theme-toggle-container {
-            position: absolute;
-            left: 8px;
-            top: 6px;
-        }
-
         .header {
             background-color: var(--header-bg);
             padding: 10px 4px;
@@ -66,19 +60,6 @@
             font-size: 18px;
             font-weight: bold;
             text-align: center;
-        }
-
-        .refresh-btn {
-            position: absolute;
-            right: 8px;
-            top: 8px;
-            background: transparent;
-            border: 1px solid var(--text-color);
-            color: var(--text-color);
-            padding: 6px 10px;
-            cursor: pointer;
-            border-radius: 2px;
-            font-size: 16px;
         }
 
         .filter-container {
@@ -171,11 +152,94 @@
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', async function() {
+    
+    
+    // Initialize the global filter set if it doesn't exist
+if (!window.filter) {
+  window.filter = new Set();
+}
+document.addEventListener('DOMContentLoaded', async function() {
             const htmlElement = document.documentElement;
-            const departures = await getMVGDepartures();
-            generateDepartureTable(departures);
+            window.departures = await getMVGDepartures();
+            generateDepartureTable(window.departures);
+                      
+                      
+        createLineButtons(window.departures);
+        addFilterButtonListeners();
         });
+        
+        function addFilterButtonListeners() {
+  const filterContainer = document.querySelector(".filter-container");
+  const buttons = filterContainer.querySelectorAll("button");
+  
+  // Add click listener to each button
+  buttons.forEach(button => {
+    button.addEventListener("click", function() {
+      const label = this.textContent;
+      
+      if (label === "All") {
+        // For "All" button: clear the filter set and remove active class from all other buttons
+        window.filter.clear();
+        
+                generateDepartureTable(window.departures);
+        buttons.forEach(btn => {
+          if (btn !== this) {
+            btn.classList.remove("active");
+          }
+        });
+        // Make the "All" button active
+        this.classList.add("active");
+      } else {
+        // For other buttons: toggle the label in the filter set
+        if (window.filter.has(label)) {
+          window.filter.delete(label);
+          this.classList.remove("active"); 
+        } else {
+          window.filter.add(label);
+          this.classList.add("active");
+        }
+                generateDepartureTable(window.departures);
+        
+        // Update "All" button status
+        const allButton = filterContainer.querySelector("button:first-child");
+        if (window.filter.size === 0) {
+          // If no filters are selected, make "All" active
+          allButton.classList.add("active");
+        } else {
+          // If any filters are selected, make "All" inactive
+          allButton.classList.remove("active");
+        }
+      }
+    });
+  });
+  
+  // Set initial state: "All" button active
+  const allButton = filterContainer.querySelector("button:first-child");
+  allButton.classList.add("active"); 
+}
+        
+        
+        function createLineButtons(lineObjects) {
+  // Get the container element
+  const filterContainer = document.querySelector(".filter-container");
+  
+  // Clear existing content in the container (if any)
+  filterContainer.innerHTML = "";
+  
+  // Add the "All" button first
+  const allButton = document.createElement("button");
+  allButton.className = "line-pill";
+  allButton.textContent = "All";
+  filterContainer.appendChild(allButton);
+  
+  // Add a button for each line object
+  new Set(lineObjects.map(obj=>obj.label).toSorted()).forEach(lineObj => {
+    const button = document.createElement("button");
+    button.className = "line-pill";
+    button.textContent = lineObj;
+    filterContainer.appendChild(button);
+  });
+}
         
         async function getMVGDepartures() {
   try {
@@ -222,6 +286,9 @@ function generateDepartureTable(departures) {
   
   // Add departure rows
   departures.forEach(departure => {
+  
+  if (window.filter.size > 0 && !window.filter.has(departure.label)) { return;}
+  
     const departureTime = new Date(departure.realtimeDepartureTime);
     const formattedDepartureTime = formatTime(departureTime);
     
@@ -249,12 +316,9 @@ function formatTime(date) {
 <body>
     <header class="header">
         <h1 class="station-name">Holzwiesenstraße</h1>
-        <button class="refresh-btn">⟳</button>
     </header>
     
     <div class="filter-container">
-        <button class="line-pill active">All</button>
-        <button class="line-pill">10</button>
     </div>
     
     <table class="departures-table">
