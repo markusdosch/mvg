@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         async function getMVGDepartures() {
   try {
     // The API endpoint for departures
-    const url = "https://www.mvg.de/api/bgw-pt/v3/departures?globalId=de:09162:1017";
+    const url = "https://www.mvg.de/api/bgw-pt/v3/departures?globalId=de:09162:5";
     
     const response = await fetch(url);
     if (!response.ok) {
@@ -311,8 +311,8 @@ function formatTime(date) {
 </head>
 <body>
     <header class="header">
-        <h1 class="station-name">Holzwiesenstraße</h1>
-    </header>
+        <h1 class="station-name">Ostbahnhof</h1>
+    </h bu eader>
     
     <div class="filter-container">
     </div>
