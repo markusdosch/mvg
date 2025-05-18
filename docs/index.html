@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="de" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public Transport Timetable</title>
+    <title>MVG Abfahrtszeiten</title>
     <style>
         :root {
             /* Dark theme (default) */
@@ -172,25 +172,8 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', async function() {
-            const themeToggle = document.querySelector('.theme-toggle');
             const htmlElement = document.documentElement;
-            const currentTimeElement = document.querySelector('.current-time');
-            
-            // Update current time
-            function updateCurrentTime() {
-                const now = new Date();
-                const hours = String(now.getHours()).padStart(2, '0');
-                const minutes = String(now.getMinutes()).padStart(2, '0');
-                currentTimeElement.textContent = `${hours}:${minutes}`;
-            }
-            
-                                    console.log("blub0");
-            //updateCurrentTime();
-            //setInterval(updateCurrentTime, 60000);
-            
-                        console.log("blub1");
             const departures = await getMVGDepartures();
-            console.log(departures);
             generateDepartureTable(departures);
         });
         
@@ -199,22 +182,12 @@
     // The API endpoint for departures
     const url = "https://www.mvg.de/api/bgw-pt/v3/departures?globalId=de:09162:1017";
     
-    // Fetch data from the API
     const response = await fetch(url);
-    
-            console.log("blub");
-    console.log(response);
-
-    
-    // Check if the request was successful
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     } 
     
-    // Parse the JSON response
     const departureData = await response.json();
-    
-    
     const processedDepartures = departureData.map(departure => ({
       label: departure.label,
       destination: departure.destination,
@@ -229,10 +202,8 @@
 }
 
 function generateDepartureTable(departures) {
-  // Get the table body element
   const tableBody = document.querySelector('.departures-table tbody');
   
-  // Clear existing content
   tableBody.innerHTML = '';
   
   // Add current time row
