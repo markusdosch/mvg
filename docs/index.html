@@ -230,7 +230,39 @@ document.addEventListener('DOMContentLoaded', async function() {
   filterContainer.appendChild(allButton);
   
   // Add a button for each line object
-  new Set(lineObjects.map(obj=>obj.label).toSorted()).forEach(lineObj => {
+  new Set(lineObjects.map(obj=>obj.label).toSorted(   
+  (a, b) => {
+    // Check if a starts with a letter
+    const aStartsWithLetter = /^[a-zA-Z]/.test(a);
+    // Check if b starts with a letter
+    const bStartsWithLetter = /^[a-zA-Z]/.test(b);
+    
+    // If both start with letters or both don't start with letters
+    if (aStartsWithLetter === bStartsWithLetter) {
+      if (aStartsWithLetter) {
+        // Both start with letters
+        const aLetter = a[0];
+        const bLetter = b[0];
+        
+        if (aLetter !== bLetter) {
+          // Different first letters - sort alphabetically
+          return aLetter.localeCompare(bLetter);
+        } else {
+          // Same first letter - sort by the numeric part
+          const aNum = parseInt(a.substring(1), 10);
+          const bNum = parseInt(b.substring(1), 10);
+          return aNum - bNum;
+        }
+      } else {
+        // Both are numeric - sort by numeric value
+        return parseInt(a, 10) - parseInt(b, 10);
+      }
+    } else {
+      // One starts with letter, one doesn't
+      return aStartsWithLetter ? -1 : 1;
+    }
+  }
+  )).forEach(lineObj => {
     const button = document.createElement("button");
     button.className = "line-pill";
     button.textContent = lineObj;
