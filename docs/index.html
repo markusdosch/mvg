@@ -158,7 +158,7 @@
         }
     </style>
     <script>
-  window.filter = new Set();
+  window.filter = new Set(getFilterParams()); 
   window.currentTime = new Date();
   
 document.addEventListener('DOMContentLoaded', async function() {
@@ -184,7 +184,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         // For "All" button: clear the filter set and remove active class from all other buttons
         window.filter.clear();
         
-                generateDepartureTable(window.departures);
         buttons.forEach(btn => {
           if (btn !== this) {
             btn.classList.remove("active");
@@ -201,7 +200,6 @@ document.addEventListener('DOMContentLoaded', async function() {
           window.filter.add(label);
           this.classList.add("active");
         }
-                generateDepartureTable(window.departures);
         
         // Update "All" button status
         const allButton = filterContainer.querySelector("button:first-child");
@@ -213,6 +211,9 @@ document.addEventListener('DOMContentLoaded', async function() {
           allButton.classList.remove("active");
         }
       }
+      
+      generateDepartureTable(window.departures);
+      updateFilterParam(window.filter);
     });
   });
   
@@ -304,6 +305,28 @@ document.addEventListener('DOMContentLoaded', async function() {
   }
 }
 
+function updateFilterParam(filterValues) {
+  // Get the current URL and parse its search parameters
+  const url = new URL(window.location.href);
+  const searchParams = url.searchParams;
+  
+  // Remove the current filter parameter if it exists
+  if (searchParams.has('filter')) {
+    searchParams.delete('filter');
+  }
+  
+  // Add each filter value to the search params
+  filterValues.forEach(value => {
+    searchParams.append('filter', value);
+  });
+  
+  // Update the URL without reloading the page
+  const newUrl = url.toString();
+  
+    window.history.replaceState({}, '', newUrl);
+
+}
+
 function generateDepartureTable(departures) {
   const tableBody = document.querySelector('.departures-table tbody');
   
@@ -315,7 +338,7 @@ function generateDepartureTable(departures) {
   const currentTimeRow = `
     <tr class="current-time-row">
       <td class="line-number"></td>
-      <td class="current-time-label">Current Time</td>
+      <td class="current-time-label">Aktuelle Uhrzeit</td>
       <td class="current-time">${formattedCurrentTime}</td>
     </tr>
   `;
@@ -348,6 +371,17 @@ function formatTime(date) {
   const hours = String(date.getHours()).padStart(2, '0');
   const minutes = String(date.getMinutes()).padStart(2, '0');
   return `${hours}:${minutes}`;
+}
+
+function getFilterParams(url = window.location.href) {
+  // Parse the URL and get its search parameters
+  const urlObj = new URL(url);
+  const searchParams = urlObj.searchParams;
+  
+  // Get all filter values (getAll returns empty array if none exist)
+  const filterValues = searchParams.getAll('filter');
+  
+  return filterValues;
 }
     </script>
 </head>
