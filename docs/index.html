@@ -52,15 +52,21 @@
             padding: 10px 4px;
             position: relative;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: center;
+            gap: 15px;
         }
 
         .station-name {
             font-size: 18px;
             font-weight: bold;
             text-align: center;
+            margin: 0;
         }
+
+    .header-link {
+      font-size: 14px;
+    }
 
         .filter-container {
             padding: 8px 4px;
@@ -346,9 +352,10 @@ function formatTime(date) {
     </script>
 </head>
 <body>
-    <header class="header">
-        <h1 class="station-name">Ostbahnhof</h1>
-    </header>
+ <header class="header">
+    <h1 class="station-name">Ostbahnhof</h1>
+    <a href="choose-station.html" class="header-link">ändern</a>
+  </header>
     
     <div class="filter-container">
     </div>
