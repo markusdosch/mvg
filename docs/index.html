@@ -217,9 +217,19 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
   });
   
-  // Set initial state: "All" button active
+  // Set initial state
+  if (window.filter.size === 0) {
   const allButton = filterContainer.querySelector("button:first-child");
   allButton.classList.add("active"); 
+  } else {
+  filterContainer.querySelectorAll("button").forEach(btn => {
+  if (window.filter.has(btn.textContent)) {
+    btn.classList.add("active");
+  }
+  });
+  }
+ 
+  
 }
         
         
