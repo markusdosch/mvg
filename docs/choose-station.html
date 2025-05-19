@@ -114,10 +114,11 @@
         const options = {
           includeScore: true,
           keys: ["name", "place"],
+          threshold: 0.25
         };
         const list = await fetchJsonData("/stations-less-fields.json");
 
-        const fuse = new Fuse(list, options);
+        window.fuse = new Fuse(list, options);
 
         // Add event listener for input changes
         searchInput.addEventListener("input", function () {
@@ -135,8 +136,7 @@
           return; // Don't show anything if search is empty
         }
 
-        const filteredStations = fuse.search(searchTerm);
-        console.log(filteredStations);
+        const filteredStations = window.fuse.search(searchTerm);
 
         // If no matching stations, show a message
         if (filteredStations.length === 0) {
@@ -147,19 +147,30 @@
           return;
         }
 
+        if (filteredStations.length > 25) {
+           filteredStations.length = 25;
+        }
+
         // Create and append table rows for each filtered station
         filteredStations.forEach((station) => {
           const row = document.createElement("tr");
-          row.innerHTML = `
-                    <td class="station-name"><a href="#">${station}</a></td>
-                `;
 
-          // Add click event to the station link
-          row.querySelector("a").addEventListener("click", function (e) {
-            e.preventDefault();
-            alert(`You selected: ${station}`);
-            // In a real application, you might navigate to a station detail page
-          });
+          const params = new URLSearchParams();
+  
+        // Add the parameters
+        params.append('id', station.item.id);
+        params.append('name', station.item.name);
+        
+          if (station.item.name !== station.item.place) {
+            row.innerHTML = `
+                    <td class="station-name"><a href="index.html?${params.toString()}">${station.item.name}, ${station.item.place}</a></td>
+                `;
+          } else {
+            row.innerHTML = `
+                    <td class="station-name"><a href="index.html?${params.toString()}">${station.item.name}</a></td>
+                `;
+          }
+     
 
           resultsBody.appendChild(row);
         });
@@ -178,7 +189,7 @@
     const jsonArray = await response.json();
     
     // Now jsonArray contains your data
-    console.log('Data loaded successfully:', jsonArray);
+    // console.log('Data loaded successfully:', jsonArray);
     
     // Return the array for further use
     return jsonArray;
