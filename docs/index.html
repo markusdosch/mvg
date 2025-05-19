@@ -291,7 +291,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   try {
     const currentUrl = (new URL(window.location.href));
     const globalId = currentUrl.searchParams.get('id') ?? "de:09162:5";
-    const name = currentUrl.searchParams.get('name') ?? "Ostbahhhof";
+    const name = currentUrl.searchParams.get('name') ?? "Ostbahnhof";
     document.querySelector(".station-name").textContent = name;
 
     const url = `https://www.mvg.de/api/bgw-pt/v3/departures?globalId=${globalId}`;
