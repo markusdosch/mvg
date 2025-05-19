@@ -272,8 +272,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         
         async function getMVGDepartures() {
   try {
-    // The API endpoint for departures
-    const url = "https://www.mvg.de/api/bgw-pt/v3/departures?globalId=de:09162:5";
+    const currentUrl = (new URL(window.location.href));
+    const globalId = currentUrl.searchParams.get('id') ?? "de:09162:5";
+    const name = currentUrl.searchParams.get('name') ?? "Ostbahhhof";
+    document.querySelector(".station-name").textContent = name;
+
+    const url = `https://www.mvg.de/api/bgw-pt/v3/departures?globalId=${globalId}`;
     
     const response = await fetch(url);
     if (!response.ok) {
