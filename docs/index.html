@@ -320,14 +320,14 @@
 					}
 
 					const departureData = await response.json();
-					const processedDepartures = departureData.map(
-						(departure) => ({
+					const processedDepartures = departureData
+						.filter((departure) => departure.cancelled === false)
+						.map((departure) => ({
 							label: departure.label,
 							destination: departure.destination,
 							realtimeDepartureTime:
 								departure.realtimeDepartureTime,
-						})
-					);
+						}));
 
 					return processedDepartures;
 				} catch (error) {
