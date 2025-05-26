@@ -158,6 +158,8 @@
 				opacity: 0.7;
 				font-size: 12px;
 			}
+			
+			.font-color-red { color: #8B0000; }
 		</style>
 		<script>
 			window.filter = new Set(getFilterParams());
@@ -167,7 +169,6 @@
 				const htmlElement = document.documentElement;
 				window.departures = await getMVGDepartures();
 				generateDepartureTable(window.departures);
-
 				createLineButtons(window.departures);
 				addFilterButtonListeners();
 			});
@@ -327,6 +328,7 @@
 							destination: departure.destination,
 							realtimeDepartureTime:
 								departure.realtimeDepartureTime,
+							delayInMinutes: departure.delayInMinutes,
 						}));
 
 					return processedDepartures;
@@ -396,7 +398,7 @@
         <td class="line-number">${departure.label}</td>
         <td class="destination">${departure.destination}</td>
         <td class="time-container">
-          <span class="clock-time">${formattedDepartureTime}</span>
+          <span class="clock-time ${departure.delayInMinutes > 0 ? 'font-color-red' : ''}">${formattedDepartureTime}</span>
         </td>
       </tr>
     `;
