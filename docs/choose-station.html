@@ -1,219 +1,224 @@
 <!DOCTYPE html>
 <html lang="de" data-theme="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Station wählen</title>
-    <style>
-      :root {
-        /* Dark theme (default) */
-        --bg-color: #0a0a0a;
-        --text-color: #f0f0f0;
-        --header-bg: #1a1a1a;
-        --pill-bg: #333;
-        --pill-active: #0066cc;
-        --odd-row: #141414;
-        --even-row: #1c1c1c;
-        --accent: #ffcc00;
-        --soon: #ff6347;
-        --border-color: #333;
-      }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Station wählen</title>
+		<style>
+			:root {
+				/* Dark theme (default) */
+				--bg-color: #0a0a0a;
+				--text-color: #f0f0f0;
+				--header-bg: #1a1a1a;
+				--pill-bg: #333;
+				--pill-active: #0066cc;
+				--odd-row: #141414;
+				--even-row: #1c1c1c;
+				--accent: #ffcc00;
+				--soon: #ff6347;
+				--border-color: #333;
+			}
 
-      /* Light theme */
-      @media (prefers-color-scheme: light) {
-        :root {
-          --bg-color: #f5f5f5;
-          --text-color: #222;
-          --header-bg: #e0e0e0;
-          --pill-bg: #d0d0d0;
-          --pill-active: #0077ff;
-          --odd-row: #ffffff;
-          --even-row: #f0f0f0;
-          --accent: #006699;
-          --soon: #dd3300;
-          --border-color: #ccc;
-        }
-      }
+			/* Light theme */
+			@media (prefers-color-scheme: light) {
+				:root {
+					--bg-color: #f5f5f5;
+					--text-color: #222;
+					--header-bg: #e0e0e0;
+					--pill-bg: #d0d0d0;
+					--pill-active: #0077ff;
+					--odd-row: #ffffff;
+					--even-row: #f0f0f0;
+					--accent: #006699;
+					--soon: #dd3300;
+					--border-color: #ccc;
+				}
+			}
 
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: monospace;
-      }
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-family: monospace;
+			}
 
-      body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        font-size: 14px;
-        line-height: 1.2;
-      }
+			body {
+				background-color: var(--bg-color);
+				color: var(--text-color);
+				font-size: 14px;
+				line-height: 1.2;
+			}
 
-      .header {
-        background-color: var(--header-bg);
-        padding: 10px 4px;
-        position: relative;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        gap: 15px;
-      }
+			.header {
+				background-color: var(--header-bg);
+				padding: 10px 4px;
+				position: relative;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				gap: 15px;
+			}
 
-      .departures-table {
-        width: 100%;
-        border-collapse: collapse;
-      }
+			.departures-table {
+				width: 100%;
+				border-collapse: collapse;
+			}
 
-      .departures-table tr:nth-child(odd) {
-        background-color: var(--odd-row);
-      }
+			.departures-table tr:nth-child(odd) {
+				background-color: var(--odd-row);
+			}
 
-      .departures-table tr:nth-child(even) {
-        background-color: var(--even-row);
-      }
+			.departures-table tr:nth-child(even) {
+				background-color: var(--even-row);
+			}
 
-      .departures-table td {
-        padding: 8px 6px;
-      }
+			.departures-table td {
+				padding: 8px 6px;
+			}
 
-      .line-number {
-        width: 45px;
-        text-align: center;
-        font-weight: bold;
-        color: var(--accent);
-      }
+			.line-number {
+				width: 45px;
+				text-align: center;
+				font-weight: bold;
+				color: var(--accent);
+			}
 
-      .search-container {
-        width: 100%;
-        max-width: 500px;
-      }
-      .search-input {
-        width: 100%;
-        padding: 10px;
-        font-size: 16px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
+			.search-container {
+				width: 100%;
+				max-width: 500px;
+			}
+			.search-input {
+				width: 100%;
+				padding: 10px;
+				font-size: 16px;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+			}
 
-      .no-results {
-        text-align: center;
-        padding: 20px;
-        color: #666;
-      }
-    </style>
-    <script
-      src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0"
-      integrity="sha384-P/y/5cwqUn6MDvJ9lCHJSaAi2EoH3JSeEdyaORsQMPgbpvA+NvvUqik7XH2YGBjb"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", async () => {
-        const searchInput = document.getElementById("stationSearch");
-        const resultsBody = document.getElementById("resultsBody");
+			.no-results {
+				text-align: center;
+				padding: 20px;
+				color: #666;
+			}
+		</style>
+		<script
+			src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0"
+			integrity="sha384-P/y/5cwqUn6MDvJ9lCHJSaAi2EoH3JSeEdyaORsQMPgbpvA+NvvUqik7XH2YGBjb"
+			crossorigin="anonymous"
+		></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", async () => {
+				const searchInput = document.getElementById("stationSearch");
+				const resultsBody = document.getElementById("resultsBody");
 
-        const options = {
-          includeScore: true,
-          keys: ["name", "place"],
-          threshold: 0.25
-        };
-        const list = await fetchJsonData("/stations-less-fields.json");
+				const options = {
+					includeScore: true,
+					keys: ["name", "place"],
+					threshold: 0.25,
+				};
+				const list = await fetchJsonData("/stations-less-fields.json");
 
-        window.fuse = new Fuse(list, options);
+				window.fuse = new Fuse(list, options);
 
-        // Add event listener for input changes
-        searchInput.addEventListener("input", function () {
-          const searchTerm = this.value.toLowerCase();
-          renderResults(searchTerm);
-        });
-      });
+				// Add event listener for input changes
+				searchInput.addEventListener("input", function () {
+					const searchTerm = this.value.toLowerCase();
+					renderResults(searchTerm);
+				});
+			});
 
-      // Function to render results in the table
-      function renderResults(searchTerm) {
-        // Clear existing results
-        resultsBody.innerHTML = "";
+			// Function to render results in the table
+			function renderResults(searchTerm) {
+				// Clear existing results
+				resultsBody.innerHTML = "";
 
-        if (!searchTerm) {
-          return; // Don't show anything if search is empty
-        }
+				if (!searchTerm) {
+					return; // Don't show anything if search is empty
+				}
 
-        const filteredStations = window.fuse.search(searchTerm);
+				const filteredStations = window.fuse.search(searchTerm);
 
-        // If no matching stations, show a message
-        if (filteredStations.length === 0) {
-          const noResultsRow = document.createElement("tr");
-          noResultsRow.innerHTML =
-            '<td class="no-results">No stations found matching your search</td>';
-          resultsBody.appendChild(noResultsRow);
-          return;
-        }
+				// If no matching stations, show a message
+				if (filteredStations.length === 0) {
+					const noResultsRow = document.createElement("tr");
+					noResultsRow.innerHTML =
+						'<td class="no-results">No stations found matching your search</td>';
+					resultsBody.appendChild(noResultsRow);
+					return;
+				}
 
-        if (filteredStations.length > 25) {
-           filteredStations.length = 25;
-        }
+				if (filteredStations.length > 25) {
+					filteredStations.length = 25;
+				}
 
-        // Create and append table rows for each filtered station
-        filteredStations.forEach((station) => {
-          const row = document.createElement("tr");
+				// Create and append table rows for each filtered station
+				filteredStations.forEach((station) => {
+					const row = document.createElement("tr");
 
-          const params = new URLSearchParams();
-  
-        // Add the parameters
-        params.append('id', station.item.id);
-        params.append('name', station.item.name);
-        
-          if (station.item.name !== station.item.place) {
-            row.innerHTML = `
-                    <td class="station-name"><a href="index.html?${params.toString()}">${station.item.name}, ${station.item.place}</a></td>
+					const params = new URLSearchParams();
+
+					// Add the parameters
+					params.append("id", station.item.id);
+					params.append("name", station.item.name);
+
+					if (station.item.name !== station.item.place) {
+						row.innerHTML = `
+                    <td class="station-name"><a href="index.html?${params.toString()}">${
+							station.item.name
+						}, ${station.item.place}</a></td>
                 `;
-          } else {
-            row.innerHTML = `
-                    <td class="station-name"><a href="index.html?${params.toString()}">${station.item.name}</a></td>
+					} else {
+						row.innerHTML = `
+                    <td class="station-name"><a href="index.html?${params.toString()}">${
+							station.item.name
+						}</a></td>
                 `;
-          }
-     
+					}
 
-          resultsBody.appendChild(row);
-        });
-      }
+					resultsBody.appendChild(row);
+				});
+			}
 
-      const fetchJsonData = async (url) => {
-  try {
-    const response = await fetch(url);
-    
-    // Check if the request was successful
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    
-    // Parse the JSON response
-    const jsonArray = await response.json();
-    
-    // Now jsonArray contains your data
-    // console.log('Data loaded successfully:', jsonArray);
-    
-    // Return the array for further use
-    return jsonArray;
-  } catch (error) {
-    console.error('Error loading JSON data:', error);
-    return null;
-  }
-};
-    </script>
-  </head>
-  <body>
-    <header class="header">
-      <div class="search-container">
-        <input
-          type="text"
-          class="search-input"
-          placeholder="Nach Station suchen..."
-          id="stationSearch"
-        />
-      </div>
-    </header>
+			const fetchJsonData = async (url) => {
+				try {
+					const response = await fetch(url);
 
-    <table class="departures-table">
-      <tbody id="resultsBody"></tbody>
-    </table>
-  </body>
+					// Check if the request was successful
+					if (!response.ok) {
+						throw new Error(
+							`HTTP error! Status: ${response.status}`
+						);
+					}
+
+					// Parse the JSON response
+					const jsonArray = await response.json();
+
+					// Now jsonArray contains your data
+					// console.log('Data loaded successfully:', jsonArray);
+
+					// Return the array for further use
+					return jsonArray;
+				} catch (error) {
+					console.error("Error loading JSON data:", error);
+					return null;
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<header class="header">
+			<div class="search-container">
+				<input
+					type="text"
+					class="search-input"
+					placeholder="Nach Station suchen..."
+					id="stationSearch"
+				/>
+			</div>
+		</header>
+
+		<table class="departures-table">
+			<tbody id="resultsBody"></tbody>
+		</table>
+	</body>
 </html>
