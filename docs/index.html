@@ -4,11 +4,65 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>MVG Live-Abfahrtszeiten</title>
-		<link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-<link rel="shortcut icon" href="/favicon/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-<link rel="manifest" href="/favicon/site.webmanifest" />
+		<link
+			rel="icon"
+			type="image/png"
+			href="/favicon/favicon-96x96.png"
+			sizes="96x96"
+		/>
+		<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon/favicon.ico" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/favicon/apple-touch-icon.png"
+		/>
+		<link rel="manifest" href="/favicon/site.webmanifest" />
+		<!-- HTML Meta Tags -->
+		<title>MVG Live-Abfahrtszeiten</title>
+		<meta
+			name="description"
+			content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
+		/>
+
+		<!-- Google / Search Engine Tags -->
+		<meta itemprop="name" content="MVG Live-Abfahrtszeiten" />
+		<meta
+			itemprop="description"
+			content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
+		/>
+		<meta
+			itemprop="image"
+			content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
+		/>
+
+		<!-- Facebook Meta Tags -->
+		<meta property="og:url" content="https://mvg.21solutions.de/" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="MVG Live-Abfahrtszeiten" />
+		<meta
+			property="og:description"
+			content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
+		/>
+		<meta
+			property="og:image"
+			content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
+		/>
+
+		<!-- Twitter Meta Tags -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="MVG Live-Abfahrtszeiten" />
+		<meta
+			name="twitter:description"
+			content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
+		/>
+		<meta
+			name="twitter:image"
+			content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
+		/>
+
+		<!-- Meta Tags Generated via https://heymeta.com -->
+
 		<style>
 			:root {
 				/* Dark theme (default) */
@@ -338,7 +392,7 @@
 						currentUrl.searchParams.get("id") ?? "de:09162:5";
 					const name =
 						currentUrl.searchParams.get("name") ?? "Ostbahnhof";
-						document.title = name + " | " + document.title; 
+					document.title = name + " | " + document.title;
 					document.querySelector(".station-name").textContent = name;
 
 					const url = `https://www.mvg.de/api/bgw-pt/v3/departures?globalId=${globalId}`;
