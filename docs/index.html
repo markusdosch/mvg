@@ -212,7 +212,7 @@
 					button.addEventListener("click", function () {
 						const label = this.textContent;
 
-						if (label === "All") {
+						if (label === "Alle") {
 							// For "All" button: clear the filter set and remove active class from all other buttons
 							window.filter.clear();
 
@@ -279,7 +279,7 @@
 				// Add the "All" button first
 				const allButton = document.createElement("button");
 				allButton.className = "line-pill";
-				allButton.textContent = "All";
+				allButton.textContent = "Alle";
 				filterContainer.appendChild(allButton);
 
 				// Add a button for each line object
