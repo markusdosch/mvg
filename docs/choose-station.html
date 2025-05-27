@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Station wählen</title>
 		<style>
-			:root {
+		:root {
 				/* Dark theme (default) */
 				--bg-color: #0a0a0a;
 				--text-color: #f0f0f0;
@@ -17,6 +17,12 @@
 				--accent: #ffcc00;
 				--soon: #ff6347;
 				--border-color: #333;
+
+				/* Link colors for dark theme */
+				--link-color: #66b3ff;
+				--link-hover: #4da6ff;
+				--link-visited: #b366ff;
+				--link-active: #ffcc00;
 			}
 
 			/* Light theme */
@@ -32,6 +38,12 @@
 					--accent: #006699;
 					--soon: #dd3300;
 					--border-color: #ccc;
+
+					/* Link colors for light theme */
+					--link-color: #0066cc;
+					--link-hover: #0052a3;
+					--link-visited: #663399;
+					--link-active: #006699;
 				}
 			}
 
@@ -40,6 +52,22 @@
 				padding: 0;
 				box-sizing: border-box;
 				font-family: monospace;
+			}
+
+			/* Apply link styles */
+			a {
+				color: var(--link-color);
+				text-decoration: none;
+				transition: color 0.2s ease;
+			}
+
+			a:hover {
+				color: var(--link-hover);
+				text-decoration: underline;
+			}
+
+			a:visited {
+				color: var(--link-visited);
 			}
 
 			body {
