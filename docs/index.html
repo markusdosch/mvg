@@ -244,6 +244,9 @@ min-width: 44px;
 			.clock-time {
 				opacity: 0.7;
 			}
+
+			 .loader { width: 40px; height: 40px; border: 4px solid #ddd; border-top-color: #333; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { to { transform: rotate(360deg); } }
 		</style>
 		<script>
 			window.filter = new Set(getFilterParams());
@@ -252,6 +255,8 @@ min-width: 44px;
 			document.addEventListener("DOMContentLoaded", async function () {
 				const htmlElement = document.documentElement;
 				window.departures = await getMVGDepartures();
+				document.querySelector(".loader-wrapper").style.display = "none";
+				document.querySelector(".filter-container").style.display = "flex";
 				generateDepartureTable(window.departures);
 				createLineButtons(window.departures);
 				addFilterButtonListeners();
@@ -419,6 +424,7 @@ min-width: 44px;
 					return processedDepartures;
 				} catch (error) {
 					console.error("Error fetching MVG departures:", error);
+					alert("Abfrage bei den MVG-Servern ist fehlgeschlagen. Bitte versuch es später nochmal.")
 					throw error;
 				}
 			}
@@ -516,10 +522,14 @@ min-width: 44px;
 			<a href="choose-station.html" class="header-link">ändern</a>
 		</header>
 
-		<div class="filter-container"></div>
+		<div class="filter-container" style="display: none;"></div>
 
 		<table class="departures-table">
 			<tbody></tbody>
 		</table>
+
+		<div class="loader-wrapper" style="display: flex; justify-content: center; align-items: center; margin-top: 16px;">
+			<div class="loader"></div>
+		</div>
 	</body>
 </html>
