@@ -1,466 +1,459 @@
 <!DOCTYPE html>
 <html lang="de">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>MVG Live-Abfahrtszeiten</title>
-		<link
-			rel="icon"
-			type="image/png"
-			href="/favicon/favicon-96x96.png"
-			sizes="96x96"
-		/>
-		<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-		<link rel="shortcut icon" href="/favicon/favicon.ico" />
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="/favicon/apple-touch-icon.png"
-		/>
-		<link rel="manifest" href="/favicon/site.webmanifest" />
-		<!-- HTML Meta Tags -->
-		<title>MVG Live-Abfahrtszeiten</title>
-		<meta
-			name="description"
-			content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
-		/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MVG Live-Abfahrtszeiten</title>
+    <link
+      rel="icon"
+      type="image/png"
+      href="/favicon/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/favicon/apple-touch-icon.png"
+    />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
+    <!-- HTML Meta Tags -->
+    <title>MVG Live-Abfahrtszeiten</title>
+    <meta
+      name="description"
+      content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
+    />
 
-		<!-- Google / Search Engine Tags -->
-		<meta itemprop="name" content="MVG Live-Abfahrtszeiten" />
-		<meta
-			itemprop="description"
-			content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
-		/>
-		<meta
-			itemprop="image"
-			content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
-		/>
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="MVG Live-Abfahrtszeiten" />
+    <meta
+      itemprop="description"
+      content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
+    />
+    <meta
+      itemprop="image"
+      content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
+    />
 
-		<!-- Facebook Meta Tags -->
-		<meta property="og:url" content="https://mvg.21solutions.de/" />
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content="MVG Live-Abfahrtszeiten" />
-		<meta
-			property="og:description"
-			content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
-		/>
-		<meta
-			property="og:image"
-			content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
-		/>
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://mvg.21solutions.de/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="MVG Live-Abfahrtszeiten" />
+    <meta
+      property="og:description"
+      content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
+    />
+    <meta
+      property="og:image"
+      content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
+    />
 
-		<!-- Twitter Meta Tags -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="MVG Live-Abfahrtszeiten" />
-		<meta
-			name="twitter:description"
-			content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
-		/>
-		<meta
-			name="twitter:image"
-			content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
-		/>
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MVG Live-Abfahrtszeiten" />
+    <meta
+      name="twitter:description"
+      content="Schnell und mit praktischen Features: Nach Linien filtern &amp; als Lesezeichen hinzufügen."
+    />
+    <meta
+      name="twitter:image"
+      content="https://mvg.21solutions.de/favicon/web-app-manifest-512x512.png"
+    />
 
-		<!-- Meta Tags Generated via https://heymeta.com -->
+    <!-- Meta Tags Generated via https://heymeta.com -->
 
-		<style>
-			:root {
-				/* Dark theme (default) */
-				--bg-color: #0a0a0a;
-				--text-color: #f0f0f0;
-				--header-bg: #1a1a1a;
-				--pill-bg: #333;
-				--pill-active: #0066cc;
-				--odd-row: #141414;
-				--even-row: #1c1c1c;
-				--accent: #ffcc00;
-				--soon: #ff6347;
-				--border-color: #333;
+    <style>
+      :root {
+        /* Dark theme (default) */
+        --bg-color: #0a0a0a;
+        --text-color: #f0f0f0;
+        --header-bg: #1a1a1a;
+        --pill-bg: #333;
+        --pill-active: #0066cc;
+        --odd-row: #141414;
+        --even-row: #1c1c1c;
+        --accent: #ffcc00;
+        --soon: #ff6347;
+        --border-color: #333;
 
-				/* Link colors for dark theme */
-				--link-color: #66b3ff;
-				--link-hover: #4da6ff;
-				--link-visited: #b366ff;
-				--link-active: #ffcc00;
-			}
+        /* Link colors for dark theme */
+        --link-color: #66b3ff;
+        --link-hover: #4da6ff;
+        --link-visited: #b366ff;
+        --link-active: #ffcc00;
+      }
 
-			/* Light theme */
-			@media (prefers-color-scheme: light) {
-				:root {
-					--bg-color: #f5f5f5;
-					--text-color: #222;
-					--header-bg: #e0e0e0;
-					--pill-bg: #d0d0d0;
-					--pill-active: #0077ff;
-					--odd-row: #ffffff;
-					--even-row: #f0f0f0;
-					--accent: #006699;
-					--soon: #dd3300;
-					--border-color: #ccc;
+      /* Light theme */
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg-color: #f5f5f5;
+          --text-color: #222;
+          --header-bg: #e0e0e0;
+          --pill-bg: #d0d0d0;
+          --pill-active: #0077ff;
+          --odd-row: #ffffff;
+          --even-row: #f0f0f0;
+          --accent: #006699;
+          --soon: #dd3300;
+          --border-color: #ccc;
 
-					/* Link colors for light theme */
-					--link-color: #0066cc;
-					--link-hover: #0052a3;
-					--link-visited: #663399;
-					--link-active: #006699;
-				}
-			}
+          /* Link colors for light theme */
+          --link-color: #0066cc;
+          --link-hover: #0052a3;
+          --link-visited: #663399;
+          --link-active: #006699;
+        }
+      }
 
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: border-box;
-				font-family: monospace;
-			}
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: monospace;
+      }
 
-			/* Apply link styles */
-			a {
-				color: var(--link-color);
-				text-decoration: none;
-				transition: color 0.2s ease;
-			}
+      /* Apply link styles */
+      a {
+        color: var(--link-color);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
 
-			a:hover {
-				color: var(--link-hover);
-				text-decoration: underline;
-			}
+      a:hover {
+        color: var(--link-hover);
+        text-decoration: underline;
+      }
 
-			a:visited {
-				color: var(--link-visited);
-			}
+      a:visited {
+        color: var(--link-visited);
+      }
 
-			body {
-				background-color: var(--bg-color);
-				color: var(--text-color);
-				font-size: 14px;
-				line-height: 1.2;
-			}
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-size: 14px;
+        line-height: 1.2;
+      }
 
-			.header {
-				background-color: var(--header-bg);
-				padding: 10px 4px;
-				position: relative;
-				display: flex;
-				align-items: flex-end;
-				justify-content: center;
-				gap: 15px;
-			}
+      .header {
+        background-color: var(--header-bg);
+        padding: 10px 4px;
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 15px;
+      }
 
-			.station-name {
-				font-size: 18px;
-				font-weight: bold;
-				text-align: center;
-				margin: 0;
-			}
+      .station-name {
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        margin: 0;
+      }
 
-			.header-link {
-			}
+      .header-link {
+      }
 
-			.filter-container {
-				padding: 8px 4px;
-				display: flex;
-				overflow-x: auto;
-				gap: 6px;
-				background-color: var(--header-bg);
-				border-top: 1px solid var(--border-color);
-				border-bottom: 1px solid var(--border-color);
-			}
+      .filter-container {
+        padding: 8px 4px;
+        display: flex;
+        overflow-x: auto;
+        gap: 6px;
+        background-color: var(--header-bg);
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+      }
 
-			.line-pill {
-				background-color: var(--pill-bg);
-				border: none;
-				color: var(--text-color);
-				padding: 8px 12px;
-				border-radius: 16px;
-				cursor: pointer;
-				font-size: 14px;
-flex: 0 0 auto;
-min-width: 44px;
-				text-align: center;
-				touch-action: manipulation;
-			}
+      .line-pill {
+        background-color: var(--pill-bg);
+        border: none;
+        color: var(--text-color);
+        padding: 8px 12px;
+        border-radius: 16px;
+        cursor: pointer;
+        font-size: 14px;
+        flex: 0 0 auto;
+        min-width: 44px;
+        text-align: center;
+        touch-action: manipulation;
+      }
 
-			.line-pill.active {
-				background-color: var(--pill-active);
-				color: white;
-			}
+      .line-pill.active {
+        background-color: var(--pill-active);
+        color: white;
+      }
 
-			.departures-table {
-				width: 100%;
-				border-collapse: collapse;
-			}
+      .departures-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
 
-			.departures-table tr:nth-child(odd) {
-				background-color: var(--odd-row);
-			}
+      .departures-table tr:nth-child(odd) {
+        background-color: var(--odd-row);
+      }
 
-			.departures-table tr:nth-child(even) {
-				background-color: var(--even-row);
-			}
+      .departures-table tr:nth-child(even) {
+        background-color: var(--even-row);
+      }
 
-			.departures-table td {
-				padding: 8px 6px;
-			}
+      .departures-table td {
+        padding: 8px 6px;
+      }
 
-			.current-time-row {
-				background-color: var(--header-bg) !important;
-				border-bottom: 1px solid var(--border-color);
-			}
+      .current-time-row {
+        background-color: var(--header-bg) !important;
+        border-bottom: 1px solid var(--border-color);
+      }
 
-			.current-time-label {
-				font-weight: bold;
-			}
+      .current-time-label {
+        font-weight: bold;
+      }
 
-			.current-time {
-				text-align: right;
-				font-weight: bold;
-			}
+      .current-time {
+        text-align: right;
+        font-weight: bold;
+      }
 
-			.line-number {
-				width: 45px;
-				text-align: center;
-				font-weight: bold;
-				color: var(--accent);
-			}
+      .line-number {
+        width: 45px;
+        text-align: center;
+        font-weight: bold;
+        color: var(--accent);
+      }
 
-			.destination {
-				padding-left: 4px;
-			}
+      .destination {
+        padding-left: 4px;
+      }
 
-			.time-container {
-				text-align: right;
-				white-space: nowrap;
-			}
+      .time-container {
+        text-align: right;
+        white-space: nowrap;
+      }
 
-			.minutes {
-				font-weight: bold;
-				margin-right: 4px;
-			}
+      .minutes {
+        font-weight: bold;
+        margin-right: 4px;
+      }
 
-			.minutes.soon {
-				color: var(--soon);
-			}
+      .minutes.soon {
+        color: var(--soon);
+      }
 
-			.clock-time {
-				opacity: 0.7;
-			}
+      .clock-time {
+        opacity: 0.7;
+      }
 
-			 .loader { width: 40px; height: 40px; border: 4px solid #ddd; border-top-color: #333; border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-		</style>
-		<script>
-			window.filter = new Set(getFilterParams());
-			window.currentTime = new Date();
+      .loader {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #ddd;
+        border-top-color: #333;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <script>
+      window.filter = new Set(getFilterParams());
+      window.currentTime = new Date();
 
-			document.addEventListener("DOMContentLoaded", async function () {
-				const htmlElement = document.documentElement;
-				window.departures = await getMVGDepartures();
-				document.querySelector(".loader-wrapper").style.display = "none";
-				document.querySelector(".filter-container").style.display = "flex";
-				generateDepartureTable(window.departures);
-				createLineButtons(window.departures);
-				addFilterButtonListeners();
-			});
+      document.addEventListener("DOMContentLoaded", async function () {
+        const htmlElement = document.documentElement;
+        window.departures = await getMVGDepartures();
+        document.querySelector(".loader-wrapper").style.display = "none";
+        document.querySelector(".filter-container").style.display = "flex";
+        generateDepartureTable(window.departures);
+        createLineButtons(window.departures);
+        addFilterButtonListeners();
+      });
 
-			function addFilterButtonListeners() {
-				const filterContainer =
-					document.querySelector(".filter-container");
-				const buttons = filterContainer.querySelectorAll("button");
+      function addFilterButtonListeners() {
+        const filterContainer = document.querySelector(".filter-container");
+        const buttons = filterContainer.querySelectorAll("button");
 
-				// Add click listener to each button
-				buttons.forEach((button) => {
-					button.addEventListener("click", function () {
-						const label = this.textContent;
+        // Add click listener to each button
+        buttons.forEach((button) => {
+          button.addEventListener("click", function () {
+            const label = this.textContent;
 
-						if (label === "Alle") {
-							// For "All" button: clear the filter set and remove active class from all other buttons
-							window.filter.clear();
+            if (label === "Alle") {
+              // For "All" button: clear the filter set and remove active class from all other buttons
+              window.filter.clear();
 
-							buttons.forEach((btn) => {
-								if (btn !== this) {
-									btn.classList.remove("active");
-								}
-							});
-							// Make the "All" button active
-							this.classList.add("active");
-						} else {
-							// For other buttons: toggle the label in the filter set
-							if (window.filter.has(label)) {
-								window.filter.delete(label);
-								this.classList.remove("active");
-							} else {
-								window.filter.add(label);
-								this.classList.add("active");
-							}
+              buttons.forEach((btn) => {
+                if (btn !== this) {
+                  btn.classList.remove("active");
+                }
+              });
+              // Make the "All" button active
+              this.classList.add("active");
+            } else {
+              // For other buttons: toggle the label in the filter set
+              if (window.filter.has(label)) {
+                window.filter.delete(label);
+                this.classList.remove("active");
+              } else {
+                window.filter.add(label);
+                this.classList.add("active");
+              }
 
-							// Update "All" button status
-							const allButton =
-								filterContainer.querySelector(
-									"button:first-child"
-								);
-							if (window.filter.size === 0) {
-								// If no filters are selected, make "All" active
-								allButton.classList.add("active");
-							} else {
-								// If any filters are selected, make "All" inactive
-								allButton.classList.remove("active");
-							}
-						}
+              // Update "All" button status
+              const allButton =
+                filterContainer.querySelector("button:first-child");
+              if (window.filter.size === 0) {
+                // If no filters are selected, make "All" active
+                allButton.classList.add("active");
+              } else {
+                // If any filters are selected, make "All" inactive
+                allButton.classList.remove("active");
+              }
+            }
 
-						generateDepartureTable(window.departures);
-						updateFilterParam(window.filter);
-					});
-				});
+            generateDepartureTable(window.departures);
+            updateFilterParam(window.filter);
+          });
+        });
 
-				// Set initial state
-				if (window.filter.size === 0) {
-					const allButton =
-						filterContainer.querySelector("button:first-child");
-					allButton.classList.add("active");
-				} else {
-					filterContainer
-						.querySelectorAll("button")
-						.forEach((btn) => {
-							if (window.filter.has(btn.textContent)) {
-								btn.classList.add("active");
-							}
-						});
-				}
-			}
+        // Set initial state
+        if (window.filter.size === 0) {
+          const allButton = filterContainer.querySelector("button:first-child");
+          allButton.classList.add("active");
+        } else {
+          filterContainer.querySelectorAll("button").forEach((btn) => {
+            if (window.filter.has(btn.textContent)) {
+              btn.classList.add("active");
+            }
+          });
+        }
+      }
 
-			function createLineButtons(lineObjects) {
-				// Get the container element
-				const filterContainer =
-					document.querySelector(".filter-container");
+      function createLineButtons(lineObjects) {
+        // Get the container element
+        const filterContainer = document.querySelector(".filter-container");
 
-				// Clear existing content in the container (if any)
-				filterContainer.innerHTML = "";
+        // Clear existing content in the container (if any)
+        filterContainer.innerHTML = "";
 
-				// Add the "All" button first
-				const allButton = document.createElement("button");
-				allButton.className = "line-pill";
-				allButton.textContent = "Alle";
-				filterContainer.appendChild(allButton);
+        // Add the "All" button first
+        const allButton = document.createElement("button");
+        allButton.className = "line-pill";
+        allButton.textContent = "Alle";
+        filterContainer.appendChild(allButton);
 
-				// Add a button for each line object
-				new Set(
-					lineObjects
-						.map((obj) => obj.label)
-						.toSorted((a, b) => {
-							// Check if a starts with a letter
-							const aStartsWithLetter = /^[a-zA-Z]/.test(a);
-							// Check if b starts with a letter
-							const bStartsWithLetter = /^[a-zA-Z]/.test(b);
+        // Add a button for each line object
+        new Set(
+          lineObjects
+            .map((obj) => obj.label)
+            .toSorted((a, b) => {
+              // Check if a starts with a letter
+              const aStartsWithLetter = /^[a-zA-Z]/.test(a);
+              // Check if b starts with a letter
+              const bStartsWithLetter = /^[a-zA-Z]/.test(b);
 
-							// If both start with letters or both don't start with letters
-							if (aStartsWithLetter === bStartsWithLetter) {
-								if (aStartsWithLetter) {
-									// Both start with letters
-									const aLetter = a[0];
-									const bLetter = b[0];
+              // If both start with letters or both don't start with letters
+              if (aStartsWithLetter === bStartsWithLetter) {
+                if (aStartsWithLetter) {
+                  // Both start with letters
+                  const aLetter = a[0];
+                  const bLetter = b[0];
 
-									if (aLetter !== bLetter) {
-										// Different first letters - sort alphabetically
-										return aLetter.localeCompare(bLetter);
-									} else {
-										// Same first letter - sort by the numeric part
-										const aNum = parseInt(
-											a.substring(1),
-											10
-										);
-										const bNum = parseInt(
-											b.substring(1),
-											10
-										);
-										return aNum - bNum;
-									}
-								} else {
-									// Both are numeric - sort by numeric value
-									return parseInt(a, 10) - parseInt(b, 10);
-								}
-							} else {
-								// One starts with letter, one doesn't
-								return aStartsWithLetter ? -1 : 1;
-							}
-						})
-				).forEach((lineObj) => {
-					const button = document.createElement("button");
-					button.className = "line-pill";
-					button.textContent = lineObj;
-					filterContainer.appendChild(button);
-				});
-			}
+                  if (aLetter !== bLetter) {
+                    // Different first letters - sort alphabetically
+                    return aLetter.localeCompare(bLetter);
+                  } else {
+                    // Same first letter - sort by the numeric part
+                    const aNum = parseInt(a.substring(1), 10);
+                    const bNum = parseInt(b.substring(1), 10);
+                    return aNum - bNum;
+                  }
+                } else {
+                  // Both are numeric - sort by numeric value
+                  return parseInt(a, 10) - parseInt(b, 10);
+                }
+              } else {
+                // One starts with letter, one doesn't
+                return aStartsWithLetter ? -1 : 1;
+              }
+            })
+        ).forEach((lineObj) => {
+          const button = document.createElement("button");
+          button.className = "line-pill";
+          button.textContent = lineObj;
+          filterContainer.appendChild(button);
+        });
+      }
 
-			async function getMVGDepartures() {
-				try {
-					const currentUrl = new URL(window.location.href);
-					const globalId =
-						currentUrl.searchParams.get("id") ?? "de:09162:5";
-					const name =
-						currentUrl.searchParams.get("name") ?? "Ostbahnhof";
-					document.title = name + " | " + document.title;
-					document.querySelector(".station-name").textContent = name;
+      async function getMVGDepartures() {
+        try {
+          const currentUrl = new URL(window.location.href);
+          const globalId = currentUrl.searchParams.get("id") ?? "de:09162:5";
+          const name = currentUrl.searchParams.get("name") ?? "Ostbahnhof";
+          document.title = name + " | " + document.title;
+          document.querySelector(".station-name").textContent = name;
 
-					const url = `https://www.mvg.de/api/bgw-pt/v3/departures?globalId=${globalId}`;
+          const url = `https://www.mvg.de/api/bgw-pt/v3/departures?globalId=${globalId}`;
 
-					const response = await fetch(url);
-					if (!response.ok) {
-						throw new Error(
-							`HTTP error! Status: ${response.status}`
-						);
-					}
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
 
-					const departureData = await response.json();
-					const processedDepartures = departureData
-						.filter((departure) => departure.cancelled === false)
-						.map((departure) => ({
-							label: departure.label,
-							destination: departure.destination,
-							realtimeDepartureTime:
-								departure.realtimeDepartureTime,
-							delayInMinutes: departure.delayInMinutes,
-						}));
+          const departureData = await response.json();
+          const processedDepartures = departureData
+            .filter((departure) => departure.cancelled === false)
+            .map((departure) => ({
+              label: departure.label,
+              destination: departure.destination,
+              realtimeDepartureTime: departure.realtimeDepartureTime,
+              delayInMinutes: departure.delayInMinutes,
+            }));
 
-					return processedDepartures;
-				} catch (error) {
-					console.error("Error fetching MVG departures:", error);
-					alert("Abfrage bei den MVG-Servern ist fehlgeschlagen. Bitte versuch es später nochmal.")
-					throw error;
-				}
-			}
+          return processedDepartures;
+        } catch (error) {
+          console.error("Error fetching MVG departures:", error);
+          alert(
+            "Abfrage bei den MVG-Servern ist fehlgeschlagen. Bitte versuch es später nochmal."
+          );
+          throw error;
+        }
+      }
 
-			function updateFilterParam(filterValues) {
-				// Get the current URL and parse its search parameters
-				const url = new URL(window.location.href);
-				const searchParams = url.searchParams;
+      function updateFilterParam(filterValues) {
+        // Get the current URL and parse its search parameters
+        const url = new URL(window.location.href);
+        const searchParams = url.searchParams;
 
-				// Remove the current filter parameter if it exists
-				if (searchParams.has("filter")) {
-					searchParams.delete("filter");
-				}
+        // Remove the current filter parameter if it exists
+        if (searchParams.has("filter")) {
+          searchParams.delete("filter");
+        }
 
-				// Add each filter value to the search params
-				filterValues.forEach((value) => {
-					searchParams.append("filter", value);
-				});
+        // Add each filter value to the search params
+        filterValues.forEach((value) => {
+          searchParams.append("filter", value);
+        });
 
-				// Update the URL without reloading the page
-				const newUrl = url.toString();
+        // Update the URL without reloading the page
+        const newUrl = url.toString();
 
-				window.history.replaceState({}, "", newUrl);
-			}
+        window.history.replaceState({}, "", newUrl);
+      }
 
-			function generateDepartureTable(departures) {
-				const tableBody = document.querySelector(
-					".departures-table tbody"
-				);
+      function generateDepartureTable(departures) {
+        const tableBody = document.querySelector(".departures-table tbody");
 
-				tableBody.innerHTML = "";
+        tableBody.innerHTML = "";
 
-				// Add current time row
-				const formattedCurrentTime = formatTime(window.currentTime);
+        // Add current time row
+        const formattedCurrentTime = formatTime(window.currentTime);
 
-				const currentTimeRow = `
+        const currentTimeRow = `
     <tr class="current-time-row">
       <td class="line-number"></td>
       <td class="current-time-label">Aktuelle Uhrzeit</td>
@@ -468,23 +461,18 @@ min-width: 44px;
     </tr>
   `;
 
-				tableBody.insertAdjacentHTML("beforeend", currentTimeRow);
+        tableBody.insertAdjacentHTML("beforeend", currentTimeRow);
 
-				// Add departure rows
-				departures.forEach((departure) => {
-					if (
-						window.filter.size > 0 &&
-						!window.filter.has(departure.label)
-					) {
-						return;
-					}
+        // Add departure rows
+        departures.forEach((departure) => {
+          if (window.filter.size > 0 && !window.filter.has(departure.label)) {
+            return;
+          }
 
-					const departureTime = new Date(
-						departure.realtimeDepartureTime
-					);
-					const formattedDepartureTime = formatTime(departureTime);
+          const departureTime = new Date(departure.realtimeDepartureTime);
+          const formattedDepartureTime = formatTime(departureTime);
 
-					const departureRow = `
+          const departureRow = `
       <tr>
         <td class="line-number">${departure.label}</td>
         <td class="destination">${departure.destination}</td>
@@ -494,42 +482,50 @@ min-width: 44px;
       </tr>
     `;
 
-					tableBody.insertAdjacentHTML("beforeend", departureRow);
-				});
-			}
+          tableBody.insertAdjacentHTML("beforeend", departureRow);
+        });
+      }
 
-			function formatTime(date) {
-				const hours = String(date.getHours()).padStart(2, "0");
-				const minutes = String(date.getMinutes()).padStart(2, "0");
-				return `${hours}:${minutes}`;
-			}
+      function formatTime(date) {
+        const hours = String(date.getHours()).padStart(2, "0");
+        const minutes = String(date.getMinutes()).padStart(2, "0");
+        return `${hours}:${minutes}`;
+      }
 
-			function getFilterParams(url = window.location.href) {
-				// Parse the URL and get its search parameters
-				const urlObj = new URL(url);
-				const searchParams = urlObj.searchParams;
+      function getFilterParams(url = window.location.href) {
+        // Parse the URL and get its search parameters
+        const urlObj = new URL(url);
+        const searchParams = urlObj.searchParams;
 
-				// Get all filter values (getAll returns empty array if none exist)
-				const filterValues = searchParams.getAll("filter");
+        // Get all filter values (getAll returns empty array if none exist)
+        const filterValues = searchParams.getAll("filter");
 
-				return filterValues;
-			}
-		</script>
-	</head>
-	<body>
-		<header class="header">
-			<h1 class="station-name">Ostbahnhof</h1>
-			<a href="choose-station.html" class="header-link">ändern</a>
-		</header>
+        return filterValues;
+      }
+    </script>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="station-name">Ostbahnhof</h1>
+      <a href="choose-station.html" class="header-link">ändern</a>
+    </header>
 
-		<div class="filter-container" style="display: none;"></div>
+    <div class="filter-container" style="display: none"></div>
 
-		<table class="departures-table">
-			<tbody></tbody>
-		</table>
+    <table class="departures-table">
+      <tbody></tbody>
+    </table>
 
-		<div class="loader-wrapper" style="display: flex; justify-content: center; align-items: center; margin-top: 16px;">
-			<div class="loader"></div>
-		</div>
-	</body>
+    <div
+      class="loader-wrapper"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 16px;
+      "
+    >
+      <div class="loader"></div>
+    </div>
+  </body>
 </html>
